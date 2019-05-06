@@ -25,6 +25,11 @@ public class GameController : MonoBehaviour
     private bool onGame = false;
     private bool hasLost = false;
 
+    // Time Stats
+    private float timePlayed = 0f;
+    private List<float> timeBetweenColorClickArray = new List<float>();
+    private float timeBetweenColorClick = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +110,7 @@ public class GameController : MonoBehaviour
         else
         {
             isShowing = false;
+            timePlayed += Time.deltaTime;
             if (play(selection)) //We reinitiate all variables if the user has succeed in order to do it again
             {
                 onGame = false;
@@ -117,14 +123,24 @@ public class GameController : MonoBehaviour
                 selectedColorsCache.Clear();
                 clickCount = 0;
                 timer = timeBtwTriggers;
+
+                timePlayed = 0f;
+                timeBetweenColorClick = 0f;
+                timeBetweenColorClickArray.Clear();
             }
         }
     }
 
     private bool play(List<GameObject> currentSelection)
     {
+        timeBetweenColorClick += Time.deltaTime;
         if (selectedColors.Count > selectedColorsCache.Count) //There was a color selected
         {
+            // Print time between each click
+            //print("Color clicked at " + timeBetweenColorClick);
+            timeBetweenColorClickArray.Add(timeBetweenColorClick);
+            timeBetweenColorClick = 0f;
+
             selectedColorsCache.Add(selectedColors[selectedColors.Count - 1]);
             if (currentSelection[index] == selectedColors[index]) //We test if it matches the corresponding color on the level selection
             {
@@ -135,7 +151,8 @@ public class GameController : MonoBehaviour
 
                 if (index == currentSelection.Count) //The user found all the selection we can go to the next level
                 {
-                    print("VOUS AVEZ GAGNE CETTE ITERATION (" + iteration + " ITERATIONS, LEVEL : "+ level +")");
+                    print("VOUS AVEZ GAGNE CETTE ITERATION (" + iteration + " ITERATIONS, LEVEL : "+ level +") en "+timePlayed+" secondes");
+                    timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
                     return true;
                 }
 
@@ -153,7 +170,8 @@ public class GameController : MonoBehaviour
                     iteration--;
                 }
 
-                print("GAME OVER ! Level : " + level + ", Itérations : " + iteration);
+                print("GAME OVER ! Level : " + level + ", Itérations : " + iteration + ", Temps: " + timePlayed + "s");
+                timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
                 hasLost = true;
                 colorListener = false;
                 hasFailed = true;
