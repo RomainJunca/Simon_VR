@@ -24,22 +24,26 @@ public class ColorBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggerColor) //Prevents blocking the lighting of a color by a previous mouse action (It can happen, when clicking so fast, that the code is not going into OnMouseUp())
+        if (gmCtrl.launch)
         {
-
-            timeOfShine += Time.deltaTime;
-
-            if (timeOfShine < colorAnim.GetCurrentAnimatorStateInfo(0).length) //We shine during the duration of the animation
+            if (triggerColor) //Prevents blocking the lighting of a color by a previous mouse action (It can happen, when clicking so fast, that the code is not going into OnMouseUp())
             {
-                colorMaterial.EnableKeyword("_EMISSION");
-            }
-            else
-            {
-                colorMaterial.DisableKeyword("_EMISSION");
-                timeOfShine = 0f;
-                triggerColor = false;
+
+                timeOfShine += Time.deltaTime;
+
+                if (timeOfShine < colorAnim.GetCurrentAnimatorStateInfo(0).length) //We shine during the duration of the animation
+                {
+                    colorMaterial.EnableKeyword("_EMISSION");
+                }
+                else
+                {
+                    colorMaterial.DisableKeyword("_EMISSION");
+                    timeOfShine = 0f;
+                    triggerColor = false;
+                }
             }
         }
+       
     }
 
     public void OnMouseDown()

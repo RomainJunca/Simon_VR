@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public bool colorListener = false;
     public int clickCount = 0;
     public bool isShowing;
+    public bool launch = false;
+    public bool reset = false;
 
     private List<GameObject> colors = new List<GameObject>();
     private List<GameObject> selectedColorsCache = new List<GameObject>();
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
     private bool hasFailed = false;
     private int level = 0;
     private bool onGame = false;
+    private bool hasLost = false;
 
     // Time Stats
     private float timePlayed = 0f;
@@ -47,21 +50,31 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasFailed) //While the player has not failed
+        if (launch)
         {
-            if (!onGame)
+            if (!hasFailed) //While the player has not failed
             {
-                //print("JE RECOMMENCE AVEC "+iteration+" ITERATIONS");
-                selection = selectColors(colors, selection);
-                onGame = true;
-                iteration++; //Harder at each level (one iteration more)
-                level++;
+                if (!onGame)
+                {
+                    selection = selectColors(colors, selection);
+                    onGame = true;
+                    iteration++; //Harder at each level (one iteration more)
+                    level++;
+                }
+                else
+                {
+                    launchLevel(selection);
+                }
             }
-            else
+
+            if(Input.GetKeyDown(KeyCode.Q) || hasLost)
             {
-                launchLevel(selection);
+                launch = false;
+                reset = true;
+                endGame();
             }
         }
+    
     }
 
     private List<GameObject> selectColors(List<GameObject> objs, List<GameObject> chosenOnes)
@@ -159,12 +172,26 @@ public class GameController : MonoBehaviour
 
                 print("GAME OVER ! Level : " + level + ", Itérations : " + iteration + ", Temps: " + timePlayed + "s");
                 timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
-                //print("Time between click: " + timeBetweenColorClickArray.ToString());
+                hasLost = true;
                 colorListener = false;
                 hasFailed = true;
             }
         }
 
         return false;
+    }
+
+    private void endGame()
+    {
+        onGame = false;
+        levelStep = 0;
+        timer = 0f;
+        index = 0;
+        colorListener = false;
+        isShowing = true;
+        selectedColors.Clear();
+        selectedColorsCache.Clear();
+        clickCount = 0;
+        timer = timeBtwTriggers;
     }
 }
