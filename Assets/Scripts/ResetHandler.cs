@@ -20,6 +20,12 @@ public class ResetHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            clicked = true;
+            gmCtrl.launch = true; //We launch the update() of every other scripts
+        }
+
         if (clicked)
         {
             gmCtrl.launch = true;

@@ -166,6 +166,7 @@ public class GameController : MonoBehaviour
     private void endGame()
     {
         onGame = false;
+        level = 0;
         levelStep = 0;
         timer = 0f;
         index = 0;
@@ -175,5 +176,7 @@ public class GameController : MonoBehaviour
         selectedColorsCache.Clear();
         clickCount = 0;
         timer = timeBtwTriggers;
+        selection.Clear();
+        iteration = 3;
     }
 }
