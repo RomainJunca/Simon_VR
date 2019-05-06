@@ -16,7 +16,7 @@ public class StartHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.localPosition.y != 1000f)
+        if(GameObject.Find("StartMenu").transform.localPosition.y != 1000f)
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -26,6 +26,8 @@ public class StartHandler : MonoBehaviour
 
             if (clicked) //If the user has clicked on the start button
             {
+                clicked = false;
+                gmCtrl.launch = true; //We launch the update() of every other scripts
                 GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 3f, GameObject.Find("Simon").transform.localPosition.z);
                 GameObject.Find("StartMenu").transform.localPosition = new Vector3(GameObject.Find("StartMenu").transform.localPosition.x, 1000f, GameObject.Find("StartMenu").transform.localPosition.z);    //We kick the menu out
                 GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the reste menu out (when reseting the game)
@@ -51,6 +53,5 @@ public class StartHandler : MonoBehaviour
     private void OnMouseDown()
     {
         clicked = true;
-        gmCtrl.launch = true; //We launch the update() of every other scripts
     }
 }

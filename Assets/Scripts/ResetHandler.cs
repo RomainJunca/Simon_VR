@@ -20,21 +20,26 @@ public class ResetHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            clicked = true;
-            gmCtrl.launch = true; //We launch the update() of every other scripts
-        }
 
-        if (clicked)
+        if(GameObject.Find("EndMenu").transform.localPosition.y != 1000f)
         {
-            gmCtrl.launch = true;
-            GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 3f, GameObject.Find("Simon").transform.localPosition.z);
-            GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 0f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
-        }
-        else
-        {
-            GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1000f, GameObject.Find("Simon").transform.localPosition.z);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                clicked = true;
+                gmCtrl.launch = true; //We launch the update() of every other scripts
+            }
+
+            if (clicked)
+            {
+                gmCtrl.launch = true;
+                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 3f, GameObject.Find("Simon").transform.localPosition.z);
+                GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
+            }
+            else
+            {
+                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1000f, GameObject.Find("Simon").transform.localPosition.z);
+            }
+
         }
 
         if (gmCtrl.reset) //The game is reset, we bring the menu in front of the user
@@ -43,6 +48,7 @@ public class ResetHandler : MonoBehaviour
             GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 0f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
             gmCtrl.reset = false;
             start.clicked = false;
+            clicked = false;
         }
     }
 

@@ -69,8 +69,6 @@ public class GameController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Q) || hasLost)
             {
-                launch = false;
-                reset = true;
                 endGame();
             }
         }
@@ -183,6 +181,8 @@ public class GameController : MonoBehaviour
 
     private void endGame()
     {
+        launch = false;
+        reset = true;
         onGame = false;
         level = 0;
         levelStep = 0;
@@ -196,5 +196,7 @@ public class GameController : MonoBehaviour
         timer = timeBtwTriggers;
         selection.Clear();
         iteration = 3;
+        hasLost = false;
+        hasFailed = false;
     }
 }
