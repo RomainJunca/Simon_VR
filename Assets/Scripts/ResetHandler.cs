@@ -9,6 +9,7 @@ public class ResetHandler : MonoBehaviour
 
     private bool clicked;
     private TextMesh title;
+    private TextMesh stats;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class ResetHandler : MonoBehaviour
         clicked = false;
         GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
         title = GameObject.Find("EndMenu").transform.Find("Board").transform.Find("Title").GetComponent<TextMesh>();
+        stats = GameObject.Find("EndMenu").transform.Find("Board").transform.Find("Stats").GetComponent<TextMesh>();
     }
 
     // Update is called once per frame
@@ -46,9 +48,20 @@ public class ResetHandler : MonoBehaviour
 
         if (gmCtrl.reset) //The game is reset, we bring the menu in front of the user
         {
+            foreach (GameObject obj in gmCtrl.colors) //We clear the materials' shaders (sometimes it stays in emissive mode when we go back to the game)
+            {
+                if(obj.GetComponent<ColorBehaviour>().triggerColor)
+                {
+                    obj.GetComponent<ColorBehaviour>().timeOfShine = 0f;//obj.GetComponent<ColorBehaviour>().colorAnim.GetCurrentAnimatorStateInfo(0).length;
+                    obj.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    obj.GetComponent<ColorBehaviour>().triggerColor = false;
+                }
+            }
+
             GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1000f, GameObject.Find("Simon").transform.localPosition.z);
             GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 0f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
             title.text = gmCtrl.rstMess;
+            stats.text = gmCtrl.rstStatMess;
             gmCtrl.reset = false;
             start.clicked = false;
             clicked = false;

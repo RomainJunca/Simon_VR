@@ -6,14 +6,15 @@ public class GameController : MonoBehaviour
 {
     public List<GameObject> selectedColors;
     public List<GameObject> selection = new List<GameObject>();
+    public List<GameObject> colors = new List<GameObject>();
     public bool colorListener = false;
     public int clickCount = 0;
     public bool isShowing;
     public bool launch = false;
     public bool reset = false;
     public string rstMess = "";
+    public string rstStatMess = "";
 
-    private List<GameObject> colors = new List<GameObject>();
     private List<GameObject> selectedColorsCache = new List<GameObject>();
     private float timer = 1f;
     private float timeBtwTriggers = 1f;
@@ -79,6 +80,13 @@ public class GameController : MonoBehaviour
                 {
                     rstMess = "Game Over !";
                 }
+
+                rstStatMess = "" + //Game Data
+                    "\nLevel reached : " + level + 
+                    "\nColors found : "+clickCount+
+                    "\nTime played : "+ System.Math.Round(timePlayed, 2)+
+                    "s\nTime between clicks : "+ System.Math.Round(timePlayed, 2)+
+                    "s";
 
                 endGame();
             }
@@ -200,7 +208,6 @@ public class GameController : MonoBehaviour
         timer = 0f;
         colorListener = false;
         isShowing = true;
-        selectedColors[index].GetComponent<ColorBehaviour>().timeOfShine = selectedColors[index].GetComponent<ColorBehaviour>().colorAnim.GetCurrentAnimatorStateInfo(0).length; //We clear the materials (sometimes it stays in emissive mode when we go back to the game)
         selectedColors.Clear();
         selectedColorsCache.Clear();
         clickCount = 0;
