@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour
                     "\nLevel reached : " + level + 
                     "\nColors found : "+clickCount+
                     "\nTime played : "+ System.Math.Round(timePlayed, 2)+
-                    "s\nTime between clicks : "+ System.Math.Round(timePlayed, 2)+
+                    "s\nTime between clicks : "+ System.Math.Round(timeBetweenColorClick, 2)+
                     "s";
 
                 endGame();
