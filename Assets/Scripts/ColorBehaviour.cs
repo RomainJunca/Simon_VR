@@ -7,10 +7,10 @@ public class ColorBehaviour : MonoBehaviour
 
     public bool triggerColor = false;
     public Animator colorAnim;
+    public float timeOfShine = 0f;
 
     private GameController gmCtrl;
     private Material colorMaterial;
-    private float timeOfShine = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,6 @@ public class ColorBehaviour : MonoBehaviour
                 }
             }
         }
-       
     }
 
     public void OnMouseDown()

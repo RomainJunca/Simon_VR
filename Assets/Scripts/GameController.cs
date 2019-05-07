@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public bool isShowing;
     public bool launch = false;
     public bool reset = false;
+    public string rstMess = "";
 
     private List<GameObject> colors = new List<GameObject>();
     private List<GameObject> selectedColorsCache = new List<GameObject>();
@@ -69,6 +70,16 @@ public class GameController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Q) || hasLost)
             {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    rstMess = "You left the game !";
+                }
+
+                if (hasLost)
+                {
+                    rstMess = "Game Over !";
+                }
+
                 endGame();
             }
         }
@@ -187,12 +198,13 @@ public class GameController : MonoBehaviour
         level = 0;
         levelStep = 0;
         timer = 0f;
-        index = 0;
         colorListener = false;
         isShowing = true;
+        selectedColors[index].GetComponent<ColorBehaviour>().timeOfShine = selectedColors[index].GetComponent<ColorBehaviour>().colorAnim.GetCurrentAnimatorStateInfo(0).length; //We clear the materials (sometimes it stays in emissive mode when we go back to the game)
         selectedColors.Clear();
         selectedColorsCache.Clear();
         clickCount = 0;
+        index = 0;
         timer = timeBtwTriggers;
         selection.Clear();
         iteration = 3;

@@ -8,6 +8,7 @@ public class ResetHandler : MonoBehaviour
     public StartHandler start;
 
     private bool clicked;
+    private TextMesh title;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class ResetHandler : MonoBehaviour
         gmCtrl.reset = false;
         clicked = false;
         GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
+        title = GameObject.Find("EndMenu").transform.Find("Board").transform.Find("Title").GetComponent<TextMesh>();
     }
 
     // Update is called once per frame
@@ -46,6 +48,7 @@ public class ResetHandler : MonoBehaviour
         {
             GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1000f, GameObject.Find("Simon").transform.localPosition.z);
             GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 0f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
+            title.text = gmCtrl.rstMess;
             gmCtrl.reset = false;
             start.clicked = false;
             clicked = false;
