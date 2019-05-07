@@ -28,8 +28,10 @@ public class ColorBehaviour : MonoBehaviour
         {
             if (triggerColor) //Prevents blocking the lighting of a color by a previous mouse action (It can happen, when clicking so fast, that the code is not going into OnMouseUp())
             {
-
+                gameObject.GetComponent<AudioSource>().Play();
                 timeOfShine += Time.deltaTime;
+
+                // Play sound when triggered
 
                 if (timeOfShine < colorAnim.GetCurrentAnimatorStateInfo(0).length) //We shine during the duration of the animation
                 {
@@ -40,6 +42,7 @@ public class ColorBehaviour : MonoBehaviour
                     colorMaterial.DisableKeyword("_EMISSION");
                     timeOfShine = 0f;
                     triggerColor = false;
+                    //gameObject.GetComponent<AudioSource>().SetScheduledEndTime(5.0f);
                 }
             }
         }
