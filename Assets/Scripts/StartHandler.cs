@@ -28,7 +28,7 @@ public class StartHandler : MonoBehaviour
             {
                 clicked = false;
                 gmCtrl.launch = true; //We launch the update() of every other scripts
-                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 3f, GameObject.Find("Simon").transform.localPosition.z);
+                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1.68f, GameObject.Find("Simon").transform.localPosition.z);
                 GameObject.Find("StartMenu").transform.localPosition = new Vector3(GameObject.Find("StartMenu").transform.localPosition.x, 1000f, GameObject.Find("StartMenu").transform.localPosition.z);    //We kick the menu out
                 GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the reste menu out (when reseting the game)
             }

@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+ 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Colors")) //For each square on the screen
         {
             obj.AddComponent<ColorBehaviour>(); //We add a script for mouse and object behaviour
@@ -42,6 +43,7 @@ public class GameController : MonoBehaviour
             //obj.transform.GetChild(0).gameObject.AddComponent<ColorBehaviour>();
             obj.transform.GetChild(0).gameObject.AddComponent<LightBehaviour>();
             obj.transform.GetChild(0).gameObject.AddComponent<MeshCollider>();
+            obj.transform.GetChild(1).gameObject.AddComponent<AreaHandler>();
             colors.Add(obj); //We add the object to a list of GameObject
         }
 
@@ -52,6 +54,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //The next line in here in order to adapt the game to the size of the user (the user will always be 1m85 in the game)
+        GameObject.Find("Floor").transform.localPosition = new Vector3(GameObject.Find("Floor").transform.localPosition.x, GameObject.Find("[CameraRig]").transform.localPosition.y - 1.8f, GameObject.Find("Floor").transform.localPosition.z);
+
         if (launch)
         {
             if (!hasFailed) //While the player has not failed

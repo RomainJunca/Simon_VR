@@ -36,7 +36,7 @@ public class ResetHandler : MonoBehaviour
             if (clicked)
             {
                 gmCtrl.launch = true;
-                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 3f, GameObject.Find("Simon").transform.localPosition.z);
+                GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1.68f, GameObject.Find("Simon").transform.localPosition.z);
                 GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1000f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
             }
             else
