@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class ColorBehaviour : MonoBehaviour
 {
@@ -46,10 +47,24 @@ public class ColorBehaviour : MonoBehaviour
                 }
             }
         }
+
+        if(SteamVR_Actions._default.Teleport.GetStateDown(SteamVR_Input_Sources.Any))
+            PressTrigger();
     }
 
     public void OnMouseDown()
     {
+        /*if (!gmCtrl.isShowing && gmCtrl.clickCount < gmCtrl.selection.Count) //We can not click when the level is showing the colors
+            {
+                triggerColor = true;
+                colorAnim.SetTrigger(gameObject.name);
+                gmCtrl.selectedColors.Add(gameObject); //We send the clicked object
+                gmCtrl.colorListener = true; //We say that the user has clicked
+                gmCtrl.clickCount++;
+            }*/
+    }
+
+    public void PressTrigger(){
         if (!gmCtrl.isShowing && gmCtrl.clickCount < gmCtrl.selection.Count) //We can not click when the level is showing the colors
             {
                 triggerColor = true;
