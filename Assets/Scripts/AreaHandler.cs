@@ -18,7 +18,11 @@ public class AreaHandler : MonoBehaviour
     {
         if (trig)
         {
-            print("COULEURS COLLIDED : "+gameObject.name);
+            gameObject.transform.parent.GetChild(0).GetComponent<LightBehaviour>().shiny = true;
+        }
+        else
+        {
+            gameObject.transform.parent.GetChild(0).GetComponent<LightBehaviour>().shiny = false;
         }
     }
 

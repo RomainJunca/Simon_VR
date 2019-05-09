@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightBehaviour : MonoBehaviour
 {
+    public bool shiny = false;
+
     private GameController gmCtrl;
     private ColorBehaviour clBhv;
     private Material colorMaterial;
@@ -19,20 +21,26 @@ public class LightBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (shiny)
+        {
+            if (colorMaterial)
+            {
+                colorMaterial.EnableKeyword("_EMISSION");
+            }
+        }
+        else
+        {
+            colorMaterial.DisableKeyword("_EMISSION");
+        }
     }
 
     private void OnMouseOver()
     {
-        colorMaterial.EnableKeyword("_EMISSION");
     }
 
     public void OnMouseExit()
     {
-        if (colorMaterial)
-        {
-            colorMaterial.DisableKeyword("_EMISSION");
-        }
+        
     }
 
     public void OnMouseDown()
