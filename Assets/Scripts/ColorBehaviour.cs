@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 public class ColorBehaviour : MonoBehaviour
 {
@@ -47,9 +46,7 @@ public class ColorBehaviour : MonoBehaviour
                 }
             }
         }
-
-        if(SteamVR_Actions._default.Teleport.GetStateDown(SteamVR_Input_Sources.Any))
-            PressTrigger();
+        
     }
 
     public void OnMouseDown()
@@ -73,6 +70,7 @@ public class ColorBehaviour : MonoBehaviour
                 gmCtrl.colorListener = true; //We say that the user has clicked
                 gmCtrl.clickCount++;
             }
+            print("n'importe quoi");
     }
 
 }

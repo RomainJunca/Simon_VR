@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class LightBehaviour : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LightBehaviour : MonoBehaviour
     private GameController gmCtrl;
     private ColorBehaviour clBhv;
     private Material colorMaterial;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,10 @@ public class LightBehaviour : MonoBehaviour
             if (colorMaterial)
             {
                 colorMaterial.EnableKeyword("_EMISSION");
+                
+                    if(SteamVR_Actions._default.Teleport.GetStateDown(SteamVR_Input_Sources.Any))
+                        gameObject.transform.parent.GetComponent<ColorBehaviour>().PressTrigger();
+
             }
         }
         else
