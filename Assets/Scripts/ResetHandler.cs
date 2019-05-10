@@ -59,7 +59,7 @@ public class ResetHandler : MonoBehaviour
             }
 
             GameObject.Find("Simon").transform.localPosition = new Vector3(GameObject.Find("Simon").transform.localPosition.x, 1000f, GameObject.Find("Simon").transform.localPosition.z);
-            GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 0f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
+            GameObject.Find("EndMenu").transform.localPosition = new Vector3(GameObject.Find("EndMenu").transform.localPosition.x, 1.85f, GameObject.Find("EndMenu").transform.localPosition.z);    //We kick the menu out
             title.text = gmCtrl.rstMess;
             stats.text = gmCtrl.rstStatMess;
             gmCtrl.reset = false;

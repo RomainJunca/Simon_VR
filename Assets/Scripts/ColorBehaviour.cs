@@ -46,10 +46,22 @@ public class ColorBehaviour : MonoBehaviour
                 }
             }
         }
+        
     }
 
     public void OnMouseDown()
     {
+        /*if (!gmCtrl.isShowing && gmCtrl.clickCount < gmCtrl.selection.Count) //We can not click when the level is showing the colors
+            {
+                triggerColor = true;
+                colorAnim.SetTrigger(gameObject.name);
+                gmCtrl.selectedColors.Add(gameObject); //We send the clicked object
+                gmCtrl.colorListener = true; //We say that the user has clicked
+                gmCtrl.clickCount++;
+            }*/
+    }
+
+    public void PressTrigger(){
         if (!gmCtrl.isShowing && gmCtrl.clickCount < gmCtrl.selection.Count) //We can not click when the level is showing the colors
             {
                 triggerColor = true;
@@ -58,6 +70,7 @@ public class ColorBehaviour : MonoBehaviour
                 gmCtrl.colorListener = true; //We say that the user has clicked
                 gmCtrl.clickCount++;
             }
+            print("n'importe quoi");
     }
 
 }
