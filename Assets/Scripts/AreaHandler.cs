@@ -19,10 +19,12 @@ public class AreaHandler : MonoBehaviour
         if (trig)
         {
             gameObject.transform.parent.GetChild(0).GetComponent<LightBehaviour>().shiny = true;
+            //gameObject.GetComponent<Collider>().enabled = true;
         }
         else
         {
             gameObject.transform.parent.GetChild(0).GetComponent<LightBehaviour>().shiny = false;
+            //gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
