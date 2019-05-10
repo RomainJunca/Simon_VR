@@ -80,5 +80,5 @@ Material:
     - _screendissolve: 1
     m_Colors:
     - _Color: {r: 0.7647059, g: 0.03137255, b: 0.03137255, a: 0.11764706}
-    - _EmissionColor: {r: 0.6597539, g: 0, b: 0.010362627, a: 1}
+    - _EmissionColor: {r: 2.9960785, g: 0, b: 0.0627451, a: 1}
     - _SectionColor: {r: 1, g: 0, b: 0, a: 1}

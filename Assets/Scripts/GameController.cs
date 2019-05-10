@@ -39,10 +39,8 @@ public class GameController : MonoBehaviour
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Colors")) //For each square on the screen
         {
             obj.AddComponent<ColorBehaviour>(); //We add a script for mouse and object behaviour
-            //obj.AddComponent<MeshCollider>();
-            //obj.transform.GetChild(0).gameObject.AddComponent<ColorBehaviour>();
+            
             obj.transform.GetChild(0).gameObject.AddComponent<LightBehaviour>();
-            //obj.transform.GetChild(0).gameObject.AddComponent<MeshCollider>();
             obj.transform.GetChild(1).gameObject.AddComponent<AreaHandler>();
             colors.Add(obj); //We add the object to a list of GameObject
         }
