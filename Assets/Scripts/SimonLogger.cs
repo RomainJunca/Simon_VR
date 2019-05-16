@@ -7,6 +7,8 @@ namespace Simon_VR.Assets.Scripts
 
         private static readonly Lazy<SimonLogger> _lazy = new Lazy<SimonLogger>(() => new SimonLogger());
 
+        public string NAME;
+
         private SimonLogger()
         {
             // Do code when 1st init
@@ -38,6 +40,13 @@ namespace Simon_VR.Assets.Scripts
             
             // Check the file suffix to avoid writing a file without suffix
             this.checkFileSuffix();
+
+            path = "D:\\"+NAME+"\\";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
 
             String filePath = this.path + this.fileName + this.fileSuffix + this.extension;
             File.AppendAllText(filePath, message + Environment.NewLine);

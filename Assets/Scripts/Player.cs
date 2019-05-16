@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Simon_VR.Assets.Scripts;
 
 public class Player : MonoBehaviour
 {
@@ -20,14 +21,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PLAYER_NAME = gmCtrl.PLAYER_NAME;
-
-        if (PLAYER_NAME == "")
+        if (!gmCtrl.launch)
         {
-            PLAYER_NAME = "Anonymous";
-        }
+            PLAYER_NAME = gmCtrl.PLAYER_NAME;
 
-        name.text = "Player :\n\n\n" + PLAYER_NAME + "\n\n\n Press\n\"P\" to change";
+            if (PLAYER_NAME == "")
+            {
+                PLAYER_NAME = "Anonymous";
+                SimonLogger.logger.NAME = PLAYER_NAME;
+            }
+
+            name.text = "Player :\n\n\n" + PLAYER_NAME + "\n\n\n";
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SimonLogger.logger.NAME = PLAYER_NAME;
+                SimonLogger.logger.write("===== Starting Game =====");
+            }
+        }        
     }
 
 }
