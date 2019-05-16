@@ -24,10 +24,10 @@ namespace Simon_VR.Assets.Scripts
             
         }
 
-        public Logger getLogger()
+        /*public Logger getLogger()
         {
             
-        }
+        }*/
 
         private void log()
         {

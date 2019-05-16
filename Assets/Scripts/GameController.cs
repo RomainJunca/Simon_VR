@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public List<GameObject> selectedColors;
     public List<GameObject> selection = new List<GameObject>();
     public List<GameObject> colors = new List<GameObject>();
+    public string PLAYER_NAME = "";
     public bool colorListener = false;
     public int clickCount = 0;
     public bool isShowing;
