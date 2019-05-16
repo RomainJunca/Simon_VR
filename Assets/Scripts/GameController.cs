@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Simon_VR.Assets.Scripts;
 
 public class GameController : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameController : MonoBehaviour
 
         isShowing = true;
         iteration = starterLevelIterations;
+
+        SimonLogger.logger.write("===== Starting Game =====");
     }
 
     // Update is called once per frame
@@ -90,6 +93,8 @@ public class GameController : MonoBehaviour
                     "\nTime played : "+ System.Math.Round(timePlayed, 2)+
                     "s\nTime between clicks : "+ System.Math.Round(timeBetweenColorClick, 2)+
                     "s";
+                
+                SimonLogger.logger.write("===== Game Over =====");
 
                 endGame();
             }
