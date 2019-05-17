@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using String = System.String;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Simon_VR.Assets.Scripts;
 
 public class GameController : MonoBehaviour
 {
@@ -63,6 +65,7 @@ public class GameController : MonoBehaviour
             {
                 if (!onGame)
                 {
+                    SimonLogger.logger.write("===== Started Level " + level + " =====");
                     selection = selectColors(colors, selection);
                     onGame = true;
                     iteration++; //Harder at each level (one iteration more)
@@ -92,8 +95,6 @@ public class GameController : MonoBehaviour
                     "\nTime played : "+ System.Math.Round(timePlayed, 2)+
                     "s\nTime between clicks : "+ System.Math.Round(timeBetweenColorClick, 2)+
                     "s";
-                
-                //SimonLogger.logger.write("===== Game Over =====");
 
                 endGame();
             }
@@ -163,6 +164,7 @@ public class GameController : MonoBehaviour
             // Print time between each click
             //print("Color clicked at " + timeBetweenColorClick);
             timeBetweenColorClickArray.Add(timeBetweenColorClick);
+            SimonLogger.logger.write("Clicked Color: " + timeBetweenColorClick + "s");
             timeBetweenColorClick = 0f;
 
             selectedColorsCache.Add(selectedColors[selectedColors.Count - 1]);
@@ -175,6 +177,7 @@ public class GameController : MonoBehaviour
 
                 if (index == currentSelection.Count) //The user found all the selection we can go to the next level
                 {
+                    SimonLogger.logger.write("Time played : " + timePlayed + "s");
                     print("VOUS AVEZ GAGNE CETTE ITERATION (" + iteration + " ITERATIONS, LEVEL : "+ level +") en "+timePlayed+" secondes");
                     timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
                     return true;
@@ -193,7 +196,11 @@ public class GameController : MonoBehaviour
                 {
                     iteration--;
                 }
-
+                
+                SimonLogger.logger.write("Time played : " + timePlayed + "s");
+                String colorString = "";
+                selectedColorsCache.ForEach(delegate (GameObject color) {colorString += color + " - ";});
+                SimonLogger.logger.write(colorString);
                 print("GAME OVER ! Level : " + level + ", Itérations : " + iteration + ", Temps: " + timePlayed + "s");
                 timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
                 hasLost = true;
@@ -224,5 +231,6 @@ public class GameController : MonoBehaviour
         iteration = 3;
         hasLost = false;
         hasFailed = false;
+        SimonLogger.logger.write("===== Game Over =====");
     }
 }

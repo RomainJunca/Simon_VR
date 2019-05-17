@@ -7,7 +7,7 @@ namespace Simon_VR.Assets.Scripts
 
         private static readonly Lazy<SimonLogger> _lazy = new Lazy<SimonLogger>(() => new SimonLogger());
 
-        public string NAME;
+        private string NAME;
 
         private SimonLogger()
         {
@@ -76,6 +76,14 @@ namespace Simon_VR.Assets.Scripts
                 this.fileName = fileName;
             }
             this.fileSuffix = DateTime.Now.ToString(@"d-M-yyyy-hh-mm-ss");
+        }
+
+        public void changeUserName(String userName = "")
+        {
+            if (userName.Length > 0) {
+                this.NAME = userName;
+            }
+            this.createNewFile();
         }
     }   
 }

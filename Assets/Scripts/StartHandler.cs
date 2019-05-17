@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Simon_VR.Assets.Scripts;
 
 public class StartHandler : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class StartHandler : MonoBehaviour
             {
                 clicked = true;
                 gmCtrl.launch = true; //We launch the update() of every other scripts
+                SimonLogger.logger.write("===== Starting Game =====");
             }
 
             if (clicked) //If the user has clicked on the start button

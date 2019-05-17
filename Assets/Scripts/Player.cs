@@ -28,15 +28,14 @@ public class Player : MonoBehaviour
             if (PLAYER_NAME == "")
             {
                 PLAYER_NAME = "Anonymous";
-                SimonLogger.logger.NAME = PLAYER_NAME;
             }
 
             name.text = "Player :\n\n\n" + PLAYER_NAME + "\n\n\n";
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                SimonLogger.logger.NAME = PLAYER_NAME;
-                SimonLogger.logger.write("===== Starting Game =====");
+                SimonLogger.logger.changeUserName(PLAYER_NAME);
+                SimonLogger.logger.write("===== Created log =====");
             }
         }        
     }
