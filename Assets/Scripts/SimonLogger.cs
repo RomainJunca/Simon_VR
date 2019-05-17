@@ -41,14 +41,12 @@ namespace Simon_VR.Assets.Scripts
             // Check the file suffix to avoid writing a file without suffix
             this.checkFileSuffix();
 
-            path = "D:\\"+NAME+"\\";
-
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(this.path + this.NAME))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(this.path + this.NAME);
             }
 
-            String filePath = this.path + this.fileName + this.fileSuffix + this.extension;
+            String filePath = this.path + this.NAME + "\\" + this.fileName + this.fileSuffix + this.extension;
             File.AppendAllText(filePath, message + Environment.NewLine);
         }
 

@@ -178,6 +178,12 @@ public class GameController : MonoBehaviour
                 if (index == currentSelection.Count) //The user found all the selection we can go to the next level
                 {
                     SimonLogger.logger.write("Time played : " + timePlayed + "s");
+                    String colorStringCache = "- ";
+                    foreach (GameObject mustang in selectedColorsCache)
+                    {
+                        colorStringCache += mustang + " - ";
+                    }
+                    SimonLogger.logger.write(colorStringCache);
                     print("VOUS AVEZ GAGNE CETTE ITERATION (" + iteration + " ITERATIONS, LEVEL : "+ level +") en "+timePlayed+" secondes");
                     timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
                     return true;
@@ -197,9 +203,22 @@ public class GameController : MonoBehaviour
                     iteration--;
                 }
                 
+                // Selected colors
                 SimonLogger.logger.write("Time played : " + timePlayed + "s");
-                String colorString = "";
-                selectedColorsCache.ForEach(delegate (GameObject color) {colorString += color + " - ";});
+                String colorStringCache = "- ";
+                foreach (GameObject mustang in selectedColorsCache)
+                {
+                    colorStringCache += mustang + " - ";
+                }
+                SimonLogger.logger.write(colorStringCache);
+
+                // List of colors to reproduce
+                SimonLogger.logger.write("Time played : " + timePlayed + "s");
+                String colorString = "List of colors to reproduce: ";
+                foreach (GameObject mustang in selection)
+                {
+                    colorString += mustang + " - ";
+                }
                 SimonLogger.logger.write(colorString);
                 print("GAME OVER ! Level : " + level + ", Itérations : " + iteration + ", Temps: " + timePlayed + "s");
                 timeBetweenColorClickArray.ForEach(delegate (float value) { print("Time between click: " + value + "s"); });
