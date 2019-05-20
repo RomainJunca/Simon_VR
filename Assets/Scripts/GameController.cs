@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     private List<GameObject> selectedColorsCache = new List<GameObject>();
     private float timer = 1f;
     private float timeBtwTriggers = 1f;
-    private int starterLevelIterations = 3;
+    private int starterLevelIterations = 1;
     private int iteration;
     private int levelStep = 0;
     private int index = 0;
