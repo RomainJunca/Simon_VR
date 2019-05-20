@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Simon_VR.Assets.Scripts;
 
 public class ResetHandler : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class ResetHandler : MonoBehaviour
             {
                 clicked = true;
                 gmCtrl.launch = true; //We launch the update() of every other scripts
+                SimonLogger.logger.write("===== Starting Game =====");
             }
 
             if (clicked)
